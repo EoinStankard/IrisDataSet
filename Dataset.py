@@ -1,64 +1,174 @@
 #Name: Eoin Stankard
-#Date: 28/03/2019
+#Date: 04/04/2019
 #Description: Project on the Iris Data Set
 import csv
 import os
+#import pandas
 
-Flower = ["Setosa","Versicolor","Virginica"]
-print("Please Select Iris Flower")
-print("1. Setosa\n2. Versicolor\n3. Virginica\n4. Exit")
-choice = input("Choice: ")
+Flower = ["setosa","versicolor","virginica"]
+csvRows = ["sepal_length","sepal_width","petal_length","petal_width","species"]
 
-def maxNum(c):
-    #Calculate max here
+#******************************************************************************
+#Gets the maximum value for chosen species Sepal/Petals width/length
+#
+#******************************************************************************				
+def maxNum(c,f,opt):
+    readfile(c,opt,"max",f)
+
+#******************************************************************************
+#Gets the minimum value for chosen species Sepal/Petals width/length
+#
+#******************************************************************************	
+def minNum(c,f,opt):
+    readfile(c,opt,"min",f)
+
+#******************************************************************************
+#Calculates the average species Sepal/Petal Width/Length
+#
+#******************************************************************************	
+def avgNum(c,f):
     if c=="s":
-        print("Sepal Max")
+        print(f"{f} sepal average is:")
     elif c =="p":
-        print("Petal Max")
+        print(f"{f} petal average is:")
+		
+#******************************************************************************
+#This function opens a ready only copy of the irisDataSet.csv file and then
+#depending on what options were picked in the previous steps it will get the 
+#data
+#
+#******************************************************************************	
+def readfile(c,opt,x,s):
+	#inpu = input("Choice: ")
+    #print(s,opt,c)
+    with open("iris.csv",'r') as df:
+        reader = csv.reader(df, delimiter=',')
+        minAns = 10
+        maxAns = 0
+        if (c is 's') and (opt == 1) or  (c is 's') and (opt == 2):
+            #print("here 0")
+            col = 0
+        elif (c is 's') and (opt == 4) or (c is 's') and (opt == 5):
+            #print("here 1")
+            col = 1
+        elif (c is 'p') and (opt == 1) or (c is 'p') and (opt == 2):
+            #print("here 2")
+            col = 2
+        elif (c is 'p') and (opt == 4) or (c is 'p') and (opt == 5):
+            #print("here 3")
+            col = 3
+        else:
+            print("Error ss")
+			
+        if x == "min":
+            for row in reader:
+                if s in row:
+					#print(row[opt-1])
+                    if float(row[col]) <minAns:
+                        minAns = float(row[col])
+                else:
+                    continue
+            if col ==0 and (c is 's'):
+                print(f"{s.capitalize()} minimum sepal length is {minAns}")
+            elif col ==1 and (c is 's'):
+                print(f"{s.capitalize()} minimum sepal width is {minAns}")
+            elif col ==2 and (c is 'p'):
+                print(f"{s.capitalize()} minimum petal length is {minAns}")
+            elif col ==3 and (c is 'p'):
+                print(f"{s.capitalize()} minimum petal width is {minAns}")
+            else:
+                print("Error fff")
+			
+            #print(f"min is {minAns}") 
+        elif x == "max":
+            for row in reader:
+                if s in row:
+					#print(row[opt-1])
+                    if float(row[col]) >maxAns:
+                        maxAns = float(row[col])
+                    else:
+                        continue
+                else:
+                    continue
+            if col ==0 and (c is 's'):
+                print(f"{s.capitalize()} maximum sepal length is {maxAns}")
+            elif col ==1 and (c is 's'):
+                print(f"{s.capitalize()} maximum sepal width is {maxAns}")
+            elif col ==2 and (c is 'p'):
+                print(f"{s.capitalize()} maximum petal length is {maxAns}")
+            elif col ==3 and (c is 'p'):
+                print(f"{s.capitalize()} maximum petal width is {maxAns}")
+            else:
+                print("Error fff")
+            #print(f"max is {maxAns}") 
 
-def minNum(c):
-    if c=="s":
-        print("Sepal Min")
-    elif c =="p":
-        print("Petal Min")
-
-def avgNum(c):
-    if c=="s":
-        print("Sepal Average")
-    elif c =="p":
-        print("Petal Average")
-
-
-
+			
+#******************************************************************************
+#This function is called after the user picks a species of flower,
+#This will give the user two new menus
+#One to choose if the would live Sepal or Petal Data
+#The Second to give data options for what was selected in the first menu 
+#******************************************************************************	
 def flowerFunct(F):
     os.system('cls')
-    print(f"Options for {F}")
-    print("1. Max Sepal Length\n2. Min Sepal Length\n3. Avg Sepal Length")
-    print("4. Max Petal Length\n5. Min Petal Length\n6. Avg Petal Length")
-    option = input("Choice: ")
-
-    if int(option)==1:
-        maxNum("s")
-    elif int(option)==2:
-        minNum("s")
-    elif int(option)==3:
-        avgNum("s")
-    elif int(option)==4:
-        maxNum("p")
-    elif int(option)==5:
-        minNum("p")
-    elif int(option)==6:
-        avgNum("p")
+    print(f"Options for {F.capitalize()}")
+    print("1. Sepal Data\n2. Petal Data")
+    sp = input("Choice: ")
+    if int(sp)==1:
+        os.system('cls')
+        print(f"Options for {F.capitalize()}")
+        print("1. Max Sepal Length\n2. Min Sepal Length\n3. Avg Sepal Length")
+        print("4. Max Sepal Width\n5. Min Sepal Width\n6. Avg Sepal Width")
+        option = input("Choice: ")
+        if int(option)==1:
+            maxNum("s",F,int(option))
+        elif int(option)==2:
+            minNum("s",F,int(option))
+        elif int(option)==4:
+            maxNum("s",F,int(option))
+        elif int(option)==5:
+            minNum("s",F,int(option))
+        else:
+            print("Error")
+    elif int(sp)==2:
+        os.system('cls')
+        print(f"Options for {F.capitalize()}")
+        print("1. Max Petal Length\n2. Min Petal Length\n3. Avg Petal Length")
+        print("4. Max Petal Width\n5. Min Petal Width\n6. Avg Petal Width")
+        option = input("Choice: ")
+        if int(option)==1:
+            maxNum("p",F,int(option))
+        elif int(option)==2:
+            minNum("p",F,int(option))
+        elif int(option)==4:
+            maxNum("p",F,int(option))
+        elif int(option)==5:
+            minNum("p",F,int(option))
+        else:
+            print("Error")
     else:
-        print("Error")
-
-
-
+        print("Incorrect input")
+	
+    
+    
+    
+#******************************************************************************
+#On Running the script this is where the program will start.
+#It asks the user for choice species that they would like data on
+#After the user picks the species of flower that they would like data on 
+#the flowerFunction will be called giving the user multiple options
+#
+#******************************************************************************	
 try:
+    print("Please Select Iris Species")
+    print("1. Setosa\n2. Versicolor\n3. Virginica\n4. Exit")
+    choice = input("Choice: ")
     if int(choice)==1 or int(choice)==2 or int(choice)==3:
         flowerFunct(Flower[int(choice)-1])
     elif int(choice)==4:
         print("Exit")
+    else:
+        print("Incorrect input value")
 
 except:
     print("Exception")
