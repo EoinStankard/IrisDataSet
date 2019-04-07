@@ -4,6 +4,8 @@
 import csv
 import os
 #import pandas
+import matplotlib.pyplot as plt 
+import numpy as np
 
 Flower = ["setosa","versicolor","virginica"]
 
