@@ -3,7 +3,6 @@
 #Description: Project on the Iris Data Set
 import csv
 import os
-#import pandas
 import matplotlib.pyplot as plt 
 import numpy as np
 
@@ -12,6 +11,10 @@ Flower = ["setosa","versicolor","virginica"]
 #******************************************************************************
 #Gets the maximum value for chosen species Sepal/Petals width/length
 #
+#   maxNum(c,f,opt)
+#       c = Choice of 'sepal' or 'Petal' from "flowerFunct" function
+#       f = Species of flower
+#       opt = Data to be retrieved 'Sepal/Petal Width/Length'
 #******************************************************************************				
 def maxNum(c,f,opt):
     readfile(c,opt,"max",f)
@@ -19,6 +22,10 @@ def maxNum(c,f,opt):
 #******************************************************************************
 #Gets the minimum value for chosen species Sepal/Petals width/length
 #
+#   minNum(c,f,opt)
+#       c = Choice of 'sepal' or 'Petal' from "flowerFunct" function
+#       f = Species of flower
+#       opt = Data to be retrieved 'Sepal/Petal Width/Length'
 #******************************************************************************	
 def minNum(c,f,opt):
     readfile(c,opt,"min",f)
@@ -26,6 +33,10 @@ def minNum(c,f,opt):
 #******************************************************************************
 #Calculates the average species Sepal/Petal Width/Length
 #
+#   avgNum(c,f,opt)
+#       c = Choice of 'sepal' or 'Petal' from "flowerFunct" function
+#       f = Species of flower
+#       opt = Data to be retrieved 'Sepal/Petal Width/Length'
 #******************************************************************************	
 def avgNum(c,f,opt):
     print("here")
@@ -36,6 +47,11 @@ def avgNum(c,f,opt):
 #depending on what options were picked in the previous steps it will get the 
 #data
 #
+#   readfile(c,opt,x,s)
+#       c = Choice of 'sepal' or 'Petal'
+#       opt = Data to be retrieved 'Sepal/Petal Width/Length'
+#       x = Variable to check for data minimum ,maximum or average
+#       s = String for species of flower
 #******************************************************************************	
 def readfile(c,opt,x,s):
     with open("iris.csv",'r') as df:
@@ -119,6 +135,9 @@ def readfile(c,opt,x,s):
 #This will give the user two new menus
 #One to choose if the would live Sepal or Petal Data
 #The Second to give data options for what was selected in the first menu 
+#
+#   flowerFunct(F)
+#       F = Chosen species of Flower
 #******************************************************************************	
 def flowerFunct(F):
     os.system('cls')
@@ -200,7 +219,7 @@ def plotData():
     elif int(choice)==3:
         Init()
     else:
-        print("Incorrect input")
+        print("Incorrect input given")
 
     with open("iris.csv",'r') as df:
         reader = csv.reader(df, delimiter=',')
