@@ -1,6 +1,15 @@
 #Name: Eoin Stankard
 #Date: 11/04/2019
 #Description: Project on the Iris Data Set
+#******************************************************************************
+#References:
+#   https://pandas.pydata.org/pandas-docs/stable/getting_started/10min.html
+#   https://stackoverflow.com/questions/16503560/read-specific-columns-from-a-csv-file-with-csv-module
+#   http://www.learningaboutelectronics.com/Articles/How-to-plot-a-graph-with-matplotlib-from-data-from-a-CSV-file-using-the-CSV-module-in-Python.php
+#   https://matplotlib.org/api/_as_gen/matplotlib.pyplot.legend.html
+#   https://jakevdp.github.io/PythonDataScienceHandbook/04.06-customizing-legends.html
+#
+#******************************************************************************
 import csv
 import os
 import matplotlib.pyplot as plt 
