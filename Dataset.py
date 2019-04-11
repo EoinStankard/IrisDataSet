@@ -1,5 +1,5 @@
 #Name: Eoin Stankard
-#Date: 04/04/2019
+#Date: 11/04/2019
 #Description: Project on the Iris Data Set
 import csv
 import os
@@ -176,6 +176,54 @@ def flowerFunct(F):
         Init()
     else:
         print("Incorrect input")
+
+#******************************************************************************
+#This function is called and will plot a graph with all species data for 
+#either the species sepal or data
+#******************************************************************************	
+
+def plotData():
+    os.system('cls')
+    x,x1,x2=[],[],[]
+    y,y1,y2=[],[],[]
+    print("1. Plot Sepal data for all species\n2. Plot Petal Data for all species\n3. Home")
+    choice = input("Choice: ")
+
+    if int(choice)==1:
+        plotName = "Sepal"
+        rowX = 1
+        rowY = 0
+    elif int(choice)==2:
+        plotName = "Petal"
+        rowX = 3
+        rowY = 2
+    elif int(choice)==3:
+        Init()
+    else:
+        print("Incorrect input")
+
+    with open("iris.csv",'r') as df:
+        reader = csv.reader(df, delimiter=',')
+        for row in reader:
+            if "setosa" in row:
+                x.append(float(row[rowX]))
+                y.append(float(row[rowY]))
+            elif "virginica" in row:
+                x1.append(float(row[rowX]))
+                y1.append(float(row[rowY]))
+            elif "versicolor" in row:
+                x2.append(float(row[rowX]))
+                y2.append(float(row[rowY]))
+            else:
+                continue
+    plt.plot(x,y, "or") 
+    plt.plot(x1,y1, "ob")  
+    plt.plot(x2,y2, "og")  
+    plt.legend(('Setosa','Virginica','Versicolor')) 
+    plt.title(f'Plotting all species {plotName} data')
+    plt.xlabel(f'{plotName} Length')
+    plt.ylabel(f'{plotName} Width')
+    plt.show()
 	
 
     
@@ -189,11 +237,13 @@ def flowerFunct(F):
 def Init():
     os.system('cls')
     print("Please Select Iris Species")
-    print("1. Setosa\n2. Versicolor\n3. Virginica\n4. Exit")
+    print("1. Setosa\n2. Versicolor\n3. Virginica\n4. Plot All\n5. Exit")
     choice = input("Choice: ")
     if int(choice)==1 or int(choice)==2 or int(choice)==3:
         flowerFunct(Flower[int(choice)-1])
     elif int(choice)==4:
+        plotData()
+    elif int(choice)==5:
         print("Exit")
     else:
         print("Incorrect input value")
@@ -207,4 +257,4 @@ try:
     Init()
 
 except:
-    print("Exception")
+    print("Exception, Incorrect input given")
