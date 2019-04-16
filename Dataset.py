@@ -1,8 +1,9 @@
 #Name: Eoin Stankard
-#Date: 11/04/2019
+#Date: 16/04/2019
 #Description: Project on the Iris Data Set
 #******************************************************************************
 #References:
+#   https://gist.github.com/curran/a08a1080b88344b0c8a7
 #   https://pandas.pydata.org/pandas-docs/stable/getting_started/10min.html
 #   https://stackoverflow.com/questions/16503560/read-specific-columns-from-a-csv-file-with-csv-module
 #   http://www.learningaboutelectronics.com/Articles/How-to-plot-a-graph-with-matplotlib-from-data-from-a-CSV-file-using-the-CSV-module-in-Python.php
@@ -70,14 +71,10 @@ def readfile(c,opt,x,s):
         avgAns = 0
         count = 0
 
-        if (c is 's') and (opt == 1) or  (c is 's') and (opt == 2)  or (c is 's') and (opt == 3):
-            col = 0
-        elif (c is 's') and (opt == 4) or (c is 's') and (opt == 5) or (c is 's') and (opt == 6):
-            col = 1
-        elif (c is 'p') and (opt == 1) or (c is 'p') and (opt == 2) or (c is 'p') and (opt == 3):
-            col = 2
-        elif (c is 'p') and (opt == 4) or (c is 'p') and (opt == 5) or (c is 'p') and (opt == 6):
-            col = 3
+        if (c is 's') and (opt == 1) or  (c is 's') and (opt == 2)  or (c is 's') and (opt == 3):col = 0
+        elif (c is 's') and (opt == 4) or (c is 's') and (opt == 5) or (c is 's') and (opt == 6):col = 1
+        elif (c is 'p') and (opt == 1) or (c is 'p') and (opt == 2) or (c is 'p') and (opt == 3):col = 2
+        elif (c is 'p') and (opt == 4) or (c is 'p') and (opt == 5) or (c is 'p') and (opt == 6):col = 3
         else:
             print("Error")
 			
@@ -88,16 +85,11 @@ def readfile(c,opt,x,s):
                         minAns = float(row[col])
                 else:
                     continue
-            if col ==0 and (c is 's'):
-                print(f"{s.capitalize()} minimum sepal length is {minAns}")
-            elif col ==1 and (c is 's'):
-                print(f"{s.capitalize()} minimum sepal width is {minAns}")
-            elif col ==2 and (c is 'p'):
-                print(f"{s.capitalize()} minimum petal length is {minAns}")
-            elif col ==3 and (c is 'p'):
-                print(f"{s.capitalize()} minimum petal width is {minAns}")
-            else:
-                print("Error fff") 
+            if col ==0 and (c is 's'):print(f"{s.capitalize()} minimum sepal length is {minAns}")
+            elif col ==1 and (c is 's'):print(f"{s.capitalize()} minimum sepal width is {minAns}")
+            elif col ==2 and (c is 'p'):print(f"{s.capitalize()} minimum petal length is {minAns}")
+            elif col ==3 and (c is 'p'):print(f"{s.capitalize()} minimum petal width is {minAns}")
+            else: print("Error fff") 
         elif x == "max":
             for row in reader:
                 if s in row:
@@ -107,16 +99,11 @@ def readfile(c,opt,x,s):
                         continue
                 else:
                     continue
-            if col ==0 and (c is 's'):
-                print(f"{s.capitalize()} maximum sepal length is {maxAns}")
-            elif col ==1 and (c is 's'):
-                print(f"{s.capitalize()} maximum sepal width is {maxAns}")
-            elif col ==2 and (c is 'p'):
-                print(f"{s.capitalize()} maximum petal length is {maxAns}")
-            elif col ==3 and (c is 'p'):
-                print(f"{s.capitalize()} maximum petal width is {maxAns}")
-            else:
-                print("Error") 
+            if col ==0 and (c is 's'):print(f"{s.capitalize()} maximum sepal length is {maxAns}")
+            elif col ==1 and (c is 's'):print(f"{s.capitalize()} maximum sepal width is {maxAns}")
+            elif col ==2 and (c is 'p'):print(f"{s.capitalize()} maximum petal length is {maxAns}")
+            elif col ==3 and (c is 'p'):print(f"{s.capitalize()} maximum petal width is {maxAns}")
+            else:print("Error") 
         elif x  == "avg":
             for row in reader:
                 if s in row:
@@ -125,16 +112,11 @@ def readfile(c,opt,x,s):
                 else:
                     continue
             avgAns = avgAns/count
-            if col ==0 and (c is 's'):
-                print(f"{s.capitalize()} average sepal length is {avgAns}")
-            elif col ==1 and (c is 's'):
-                print(f"{s.capitalize()} average sepal width is {avgAns}")
-            elif col ==2 and (c is 'p'):
-                print(f"{s.capitalize()} average petal length is {avgAns}")
-            elif col ==3 and (c is 'p'):
-                print(f"{s.capitalize()} average petal width is {avgAns}")
-            else:
-                print("Error") 
+            if col ==0 and (c is 's'):print(f"{s.capitalize()} average sepal length is {avgAns}")
+            elif col ==1 and (c is 's'):print(f"{s.capitalize()} average sepal width is {avgAns}")
+            elif col ==2 and (c is 'p'):print(f"{s.capitalize()} average petal length is {avgAns}")
+            elif col ==3 and (c is 'p'):print(f"{s.capitalize()} average petal width is {avgAns}")
+            else:print("Error") 
             #print(f"{s.capitalize()} Average petal width is {avgAns}")
 
 
@@ -161,22 +143,14 @@ def flowerFunct(F):
         print("4. Max Sepal Width\n5. Min Sepal Width\n6. Avg Sepal Width")
         print("7. Home\n")
         option = input("Choice: ")
-        if int(option)==1:
-            maxNum("s",F,int(option))
-        elif int(option)==2:
-            minNum("s",F,int(option))
-        elif int(option)==3:
-            avgNum("s",F,int(option))
-        elif int(option)==4:
-            maxNum("s",F,int(option))
-        elif int(option)==5:
-            minNum("s",F,int(option))
-        elif int(option)==6:
-            avgNum("s",F,int(option))
-        elif int(option)==7:
-            Init()
-        else:
-            print("Error")
+        if int(option)==1:maxNum("s",F,int(option))
+        elif int(option)==2:minNum("s",F,int(option))
+        elif int(option)==3:avgNum("s",F,int(option))
+        elif int(option)==4:maxNum("s",F,int(option))
+        elif int(option)==5:minNum("s",F,int(option))
+        elif int(option)==6:avgNum("s",F,int(option))
+        elif int(option)==7:Init()
+        else:print("Error")
     elif int(sp)==2:
         os.system('cls')
         print(f"Options for {F.capitalize()}")
@@ -184,26 +158,16 @@ def flowerFunct(F):
         print("4. Max Petal Width\n5. Min Petal Width\n6. Avg Petal Width")
         print("7. Home\n")
         option = input("Choice: ")
-        if int(option)==1:
-            maxNum("p",F,int(option))
-        elif int(option)==2:
-            minNum("p",F,int(option))
-        elif int(option)==3:
-            avgNum("p",F,int(option))
-        elif int(option)==4:
-            maxNum("p",F,int(option))
-        elif int(option)==5:
-            minNum("p",F,int(option))
-        elif int(option)==6:
-            avgNum("p",F,int(option))
-        elif int(option)==7:
-            Init()
-        else:
-            print("Error")
-    elif int (sp)==3:
-        Init()
-    else:
-        print("Incorrect input")
+        if int(option)==1:maxNum("p",F,int(option))
+        elif int(option)==2:minNum("p",F,int(option))
+        elif int(option)==3:avgNum("p",F,int(option))
+        elif int(option)==4:maxNum("p",F,int(option))
+        elif int(option)==5:minNum("p",F,int(option))
+        elif int(option)==6:avgNum("p",F,int(option))
+        elif int(option)==7:Init()
+        else:print("Error")
+    elif int (sp)==3:Init()
+    else:print("Incorrect input")
 
 #******************************************************************************
 #This function is called and will plot a graph with all species data for 
@@ -267,14 +231,10 @@ def Init():
     print("Please Select Iris Species")
     print("1. Setosa\n2. Versicolor\n3. Virginica\n4. Plot All\n5. Exit")
     choice = input("Choice: ")
-    if int(choice)==1 or int(choice)==2 or int(choice)==3:
-        flowerFunct(Flower[int(choice)-1])
-    elif int(choice)==4:
-        plotData()
-    elif int(choice)==5:
-        print("Exit")
-    else:
-        print("Incorrect input value")
+    if int(choice)==1 or int(choice)==2 or int(choice)==3:flowerFunct(Flower[int(choice)-1])
+    elif int(choice)==4:plotData()
+    elif int(choice)==5:print("Exit")
+    else:print("Incorrect input value")
 
 
 #******************************************************************************
