@@ -3,6 +3,11 @@
 This repository contains my solutions to the 2019 Project for the module Programming and Scripting in GMIT.
 The Project decription is found in the Project-Instructions.pdf file
 
+The Iris flower data set, or Fisher's Iris data set is a multivariate data set,introduced by the British statistician and biologist Ronald in his 1936 paper The use of multiple measurements in taxonomic problems as an example of linear discriminant analysis.
+The data set consists of 50 samples from each of three species of Iris (Setosa, Versicolor and Virginica). Four features were measured from each sample: the length and the width of the sepals and petals, in centimetres. Based on the combination of these four features, Fisher developed a linear discriminant model to distinguish the species from each other. 
+The dataset contains a set of 150 records under five attributes - petal length, petal width, sepal length, sepal width and species.
+
+
 ## How to download this repository
 1. Go To Github
 2. Click the download button or Clone
