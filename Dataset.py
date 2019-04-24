@@ -1,5 +1,5 @@
 #Name: Eoin Stankard
-#Date: 16/04/2019
+#Date: 24/04/2019
 #Description: Project on the Iris Data Set
 #******************************************************************************
 #References:
@@ -49,7 +49,6 @@ def minNum(c,f,opt):
 #       opt = Data to be retrieved 'Sepal/Petal Width/Length'
 #******************************************************************************	
 def avgNum(c,f,opt):
-    print("here")
     readfile(c,opt,"avg",f)
 		
 #******************************************************************************
@@ -75,49 +74,45 @@ def readfile(c,opt,x,s):
         elif (c is 's') and (opt == 4) or (c is 's') and (opt == 5) or (c is 's') and (opt == 6):col = 1
         elif (c is 'p') and (opt == 1) or (c is 'p') and (opt == 2) or (c is 'p') and (opt == 3):col = 2
         elif (c is 'p') and (opt == 4) or (c is 'p') and (opt == 5) or (c is 'p') and (opt == 6):col = 3
-        else:
-            print("Error")
+        else:print("Error")
 			
-        if x == "min":
+        if x == "min": #If the user requests the minimum
             for row in reader:
                 if s in row:
                     if float(row[col]) <minAns:
                         minAns = float(row[col])
-                else:
-                    continue
+                else:continue
             if col ==0 and (c is 's'):print(f"{s.capitalize()} minimum sepal length is {minAns}")
             elif col ==1 and (c is 's'):print(f"{s.capitalize()} minimum sepal width is {minAns}")
             elif col ==2 and (c is 'p'):print(f"{s.capitalize()} minimum petal length is {minAns}")
             elif col ==3 and (c is 'p'):print(f"{s.capitalize()} minimum petal width is {minAns}")
-            else: print("Error fff") 
-        elif x == "max":
+            else: print("Error") 
+        elif x == "max":#If the user requests the maximum
             for row in reader:
                 if s in row:
                     if float(row[col]) >maxAns:
                         maxAns = float(row[col])
-                    else:
-                        continue
-                else:
-                    continue
+                    else:continue
+                else:continue
+
             if col ==0 and (c is 's'):print(f"{s.capitalize()} maximum sepal length is {maxAns}")
             elif col ==1 and (c is 's'):print(f"{s.capitalize()} maximum sepal width is {maxAns}")
             elif col ==2 and (c is 'p'):print(f"{s.capitalize()} maximum petal length is {maxAns}")
             elif col ==3 and (c is 'p'):print(f"{s.capitalize()} maximum petal width is {maxAns}")
             else:print("Error") 
-        elif x  == "avg":
+        elif x  == "avg":#If the user requests the Average
             for row in reader:
                 if s in row:
                     count = count + 1
                     avgAns = avgAns + float(row[col])
-                else:
-                    continue
+                else:continue
+
             avgAns = avgAns/count
             if col ==0 and (c is 's'):print(f"{s.capitalize()} average sepal length is {avgAns}")
             elif col ==1 and (c is 's'):print(f"{s.capitalize()} average sepal width is {avgAns}")
             elif col ==2 and (c is 'p'):print(f"{s.capitalize()} average petal length is {avgAns}")
             elif col ==3 and (c is 'p'):print(f"{s.capitalize()} average petal width is {avgAns}")
             else:print("Error") 
-            #print(f"{s.capitalize()} Average petal width is {avgAns}")
 
 
 			
